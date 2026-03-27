@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potato Mode — Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0A0E1A;
+      --surface: #111827;
+      --surface2: #1a2235;
+      --border: rgba(255,255,255,0.07);
+      --accent: #818CF8;
+      --accent2: #6366F1;
+      --gold: #FBBF24;
+      --text: #F1F5F9;
+      --muted: rgba(241,245,249,0.45);
+      --muted2: rgba(241,245,249,0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background blobs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(251,191,36,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HEADER */
+    header {
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+
+    .potato-emoji {
+      display: block;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 24px;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 32px rgba(129,140,248,0.4));
+      mix-blend-mode: lighten;
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(129,140,248,0.12);
+      border: 1px solid rgba(129,140,248,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* SECTION TITLE */
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* GETTING STARTED */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      transition: border-color 0.2s;
+    }
+
+    .step:hover { border-color: rgba(129,140,248,0.3); }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--accent);
+      min-width: 32px;
+      line-height: 1.4;
+    }
+
+    .step-content h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    details[open] { border-color: rgba(129,140,248,0.3); }
+
+    summary {
+      padding: 20px 24px;
+      cursor: pointer;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--accent);
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-body {
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .faq-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* CONTACT */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 12px;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .email-link:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 0 40px;
+      text-align: center;
+      color: var(--muted2);
+      font-size: 0.82rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+    /* FEATURE PILLS */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 48px 0 32px; }
+      .contact-card { padding: 24px 20px; }
+      summary { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <img src="potato_awake.png" alt="Potato Mode mascot" class="potato-emoji" />
+      <h1>Potato Mode<br/><span>Support</span></h1>
+      <p class="tagline">Block distracting apps and go full potato. We're here to help.</p>
+      <span class="badge">Free iOS App · No Account Required</span>
+
+      <div class="features">
+        <span class="pill"><span class="pill-dot"></span>Couch Mode</span>
+        <span class="pill"><span class="pill-dot"></span>Schedules</span>
+        <span class="pill"><span class="pill-dot"></span>Usage Limits</span>
+        <span class="pill"><span class="pill-dot"></span>100% On-Device</span>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- GETTING STARTED -->
+    <section>
+      <p class="section-label">Getting Started</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div class="step-content">
+            <h3>Enable Screen Time Access</h3>
+            <p>When you first open Potato Mode, tap <strong>Enable Screen Time Access</strong>. iOS will ask you to confirm — this is required to block apps. No data leaves your device.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div class="step-content">
+            <h3>Pick your apps</h3>
+            <p>Tap the app picker to choose which apps you want to block. You can select individual apps or entire categories like Social or Entertainment.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div class="step-content">
+            <h3>Block your way</h3>
+            <p>Use <strong>Couch Mode</strong> for instant blocking, <strong>Schedules</strong> for recurring time windows, or <strong>Usage Limits</strong> to set a daily time budget per app group.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <section>
+      <p class="section-label">Frequently Asked Questions</p>
+      <div class="faq-list">
+
+        <details>
+          <summary>Why does Potato Mode need Screen Time access?</summary>
+          <div class="faq-body">
+            Potato Mode uses Apple's Screen Time API to apply blocks — it's the same system your iPhone uses for built-in parental controls and focus modes. This is the only way to block apps on iOS. Your data never leaves your device and Potato Mode has no servers or accounts.
+          </div>
+        </details>
+
+        <details>
+          <summary>An app is blocked and I can't turn it off</summary>
+          <div class="faq-body">
+            Open the <strong>Potato Mode app</strong> and check each section:<br/><br/>
+            • <strong>Home tab</strong> — make sure Couch Mode is toggled off<br/>
+            • <strong>Schedules tab</strong> — check if an active schedule is running<br/>
+            • <strong>Limits tab</strong> — a usage limit may have triggered for the day<br/><br/>
+            Toggling the relevant switch off should remove the block immediately.
+          </div>
+        </details>
+
+        <details>
+          <summary>My usage limit triggered but I barely used the app</summary>
+          <div class="faq-body">
+            This is a known issue with iOS's Screen Time API where a threshold can occasionally fire incorrectly — particularly when the device is plugged in while idle. We've reported this to Apple (feedback ID: FB21450954).<br/><br/>
+            <strong>Workaround:</strong> Simply open Potato Mode. The app automatically detects and clears any phantom blocks when you launch it.
+          </div>
+        </details>
+
+        <details>
+          <summary>Will my blocks survive if I delete and reinstall the app?</summary>
+          <div class="faq-body">
+            Deleting Potato Mode will remove all blocks and reset Screen Time permissions. Your phone will return to its normal state. If you reinstall, you'll need to re-grant Screen Time access and set up your blocks again.
+          </div>
+        </details>
+
+        <details>
+          <summary>Can I block all apps or system apps like Safari?</summary>
+          <div class="faq-body">
+            You can block most third-party apps and many Apple apps including Safari. Some core system apps (like Settings and the Phone app) cannot be blocked by Apple's design — this is a platform-level restriction to ensure you can always access emergency functions.
+          </div>
+        </details>
+
+        <details>
+          <summary>Does Potato Mode work if my phone is off or in airplane mode?</summary>
+          <div class="faq-body">
+            Schedules and usage limits are managed by iOS in the background, so they continue to work regardless of network connection. Potato Mode doesn't require internet access at any point.
+          </div>
+        </details>
+
+        <details>
+          <summary>How do I remove Potato Mode completely?</summary>
+          <div class="faq-body">
+            Simply delete the app from your home screen like any other app. All blocks will be removed automatically. You may also want to go to <strong>Settings → Screen Time</strong> to confirm everything has been cleared.
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section>
+      <div class="contact-card">
+        <h2>Still need help?</h2>
+        <p>Can't find an answer above? Send us an email and we'll get back to you as soon as we can.</p>
+        <a href="mailto:m.zychowicz@outlook.com" class="email-link">
+          ✉ m.zychowicz@outlook.com
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 mattdev · Potato Mode is free, private, and built with 🥔 in Canada.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
